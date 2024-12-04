@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coral Health Prediction</title>
+</head>
+<body>
+    <h1>Coral Health Prediction</h1>
+    <form id="prediction-form" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" required>
+        <button type="submit">Predict</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        const form = document.getElementById('prediction-form');
+        const resultDiv = document.getElementById('result');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    resultDiv.textContent = `Predicted coral health: ${data.prediction}`;
+                } else {
+                    const data = await response.json();
+                    resultDiv.textContent = `Error: ${data.error}`;
+                }
+            } catch (error) {
+                resultDiv.textContent = `Error: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>
