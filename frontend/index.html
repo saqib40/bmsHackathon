@@ -1,20 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coral Health Prediction</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Coral Health Prediction</h1>
-    <form id="prediction-form" enctype="multipart/form-data">
-        <input type="file" name="file" accept="image/*" required>
-        <button type="submit">Predict</button>
-    </form>
-    <div id="result"></div>
+    <div class="container">
+        <h1>Coral Health Prediction</h1>
+
+        <!-- Upload Container Section -->
+        <div class="upload-container">
+            <input type="file" id="file-upload" name="file" accept="image/*" required>
+            <button id="upload-btn">Upload</button>
+            <input type="text" id="output-text" placeholder="Output will be displayed here" readonly>
+        </div>
+
+        <!-- Prediction Form Section -->
+        <form id="prediction-form" enctype="multipart/form-data">
+            
+            <button type="submit">Predict</button>
+        </form>
+
+        <!-- Result Display Section -->
+        <div id="result"></div>
+
+        <!-- Image Preview Section -->
+        <div class="image-preview">
+            <img id="preview-image" src="example.jpg" alt="Image Preview">
+            <div class="fish"></div>
+            <div class="fish fish-2"></div>
+            <div class="fish fish-3"></div>
+        </div>
+    </div>
 
     <script>
         const form = document.getElementById('prediction-form');
         const resultDiv = document.getElementById('result');
-
+        const outputText = document.getElementById('output-text');
+        const fileUpload = document.getElementById('file-upload');
+        const previewImage = document.getElementById('preview-image');
+        
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
             const formData = new FormData(form);
@@ -28,12 +55,24 @@
                 if (response.ok) {
                     const data = await response.json();
                     resultDiv.textContent = `Predicted coral health: ${data.prediction}`;
+                    outputText.value = `Predicted coral health: ${data.prediction}`;
                 } else {
                     const data = await response.json();
                     resultDiv.textContent = `Error: ${data.error}`;
                 }
             } catch (error) {
                 resultDiv.textContent = `Error: ${error.message}`;
+            }
+        });
+
+        fileUpload.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
             }
         });
     </script>

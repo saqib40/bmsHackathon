@@ -1,0 +1,6 @@
+__pycache__
+modelTest
+uploads
+get-pip.py
+modelHamza/finetuned_model.h5
+modelHamza/finetuned_model.keras

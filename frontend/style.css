@@ -1,0 +1,174 @@
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    animation: backgroundAnimation 15s infinite linear; /* Animates the background image */
+    background: url("marine6.jpg") no-repeat center center fixed;
+    background-size: cover;
+    background-attachment: fixed;
+    transition: background-position 1s ease-in-out;
+}
+
+/* Background animation */
+@keyframes backgroundAnimation {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 50% 50%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+/* Centered container styles */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    margin-top: 18rem;
+    background: transparent;
+    
+}
+
+/* Header styles */
+h1 {
+    color: #E1EBEE;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 0.8px rgba(0, 0, 0, 0.2);
+    animation: textGlow 0.5s infinite alternate;
+}
+
+@keyframes textGlow {
+    0% {
+        text-shadow: 0 0 10px #006d79, 0 0 20px #006d79, 0 0 30px #006d79;
+    }
+    100% {
+        text-shadow: 0 0 20px #006d79, 0 0 30px #006d79, 0 0 40px #006d79;
+    }
+}
+.fish {
+    position: absolute;
+    width: 50px;
+    height: 30px;
+    background-color: orange;
+    clip-path: polygon(0 50%, 100% 0%, 100% 100%);
+    animation: swim 5s linear infinite;
+}
+
+.fish-2 {
+    background-color: yellow;
+    animation-duration: 8s; /* Different speed */
+}
+
+.fish-3 {
+    background-color: lightcoral;
+    animation-duration: 6s; /* Different speed */
+}
+
+/* Keyframes for swimming animation */
+@keyframes swim {
+    0% {
+        transform: translateX(-100px) translateY(0);
+        transform-origin: center;
+        rotate: 0deg; /* Initial position */
+    }
+    50% {
+        transform: translateX(calc(100vw + 100px)) translateY(-20px); /* Move right and up */
+        rotate: 5deg; /* Slight rotation */
+    }
+    100% {
+        transform: translateX(-100px) translateY(0);
+        rotate: 0deg; /* Back to initial position */
+    }
+}
+
+/* Upload container styles */
+.upload-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+
+}
+
+/* File input */
+input[type="file"] {
+    flex: 1;
+    padding: 10px;
+    border: 2px dashed #00796b;
+    border-radius: 8px;
+    background-color: #e0f7fa;
+    outline: none;
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="file"]:hover {
+    background-color: #b2ebf2;
+}
+
+/* Stylish input box */
+input[type="text"] {
+    padding: 10px 15px;
+    border: 2px solid #00796b;
+    border-radius: 8px;
+    outline: none;
+    font-size: 1em;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    width: 300px;
+}
+
+input[type="text"]:focus {
+    border-color: #004d40;
+    box-shadow: 0 0 8px rgba(0, 77, 64, 0.8);
+}
+
+/* Button styling */
+button {
+    padding: 15px 20px;
+    background: linear-gradient(90deg, #324AB2, #367588);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #002fa7, #5A4FCF);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Image preview section */
+.image-preview {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.image-preview img {
+    max-width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.image-preview img:hover {
+    transform: scale(1.05);
+}

@@ -1,12 +1,14 @@
 import os
 import tensorflow as tf
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+CORS(app)
 
 # Load the pre-trained model
-model = tf.keras.models.load_model('models/finetuned.h5')
+model = tf.keras.models.load_model('modelHamza/finetuned_model.h5')
 # Alternatively, if you saved the model in Keras format
 # model = tf.keras.models.load_model('models/finetuned_model.keras')
 
@@ -20,6 +22,7 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/predict', methods=['POST'])
+@cross_origin()
 def predict():
     if 'file' not in request.files:
         return jsonify({'error': 'No file uploaded'}), 400
