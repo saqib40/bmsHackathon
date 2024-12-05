@@ -12,16 +12,12 @@
 
         <!-- Upload Container Section -->
         <div class="upload-container">
-            <input type="file" id="file-upload" name="file" accept="image/*" required>
-            <button id="upload-btn">Upload</button>
-            <input type="text" id="output-text" placeholder="Output will be displayed here" readonly>
+            <form id="prediction-form" enctype="multipart/form-data">
+                <input type="file" id="file-upload" name="file" accept="image/*" required>
+                <button type="submit">Predict</button>
+                <input type="text" id="output-text" placeholder="Output will be displayed here" readonly>
+            </form>
         </div>
-
-        <!-- Prediction Form Section -->
-        <form id="prediction-form" enctype="multipart/form-data">
-            
-            <button type="submit">Predict</button>
-        </form>
 
         <!-- Result Display Section -->
         <div id="result"></div>
@@ -44,12 +40,13 @@
         
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
-            const formData = new FormData(form);
+
+            const formData = new FormData(form);  // Ensure the file input is included
 
             try {
                 const response = await fetch('http://127.0.0.1:5000/predict', {
                     method: 'POST',
-                    body: formData
+                    body: formData,  // Send the form data including the file
                 });
 
                 if (response.ok) {

@@ -5,7 +5,7 @@ from flask_cors import CORS, cross_origin
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/predict": {"origins": "*"}})
 
 # Load the pre-trained model
 model = tf.keras.models.load_model('modelHamza/finetuned_model.h5')
