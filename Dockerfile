@@ -14,7 +14,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY backend/ .
 
 # Copy the trained model
-COPY model/finetuned_model.h5 .
+COPY backend/modelHamza/finetuned_model.h5 .
+
+# Copy the frontend code
+COPY frontend/ ./frontend/
 
 # Expose the port your Flask app is running on
 EXPOSE 5000
