@@ -1,7 +1,9 @@
 
 # AI-Based Coral Reef Health Detector
 
-Welcome to the AI-Based Coral Reef Health Detector! A project that proves even coral reefs need a doctor sometimes. 🌊🤖
+Welcome to the AI-Based Coral Reef Health Detector! 
+Project developed and designed under the leadership of Jaydeep Mukherjee
+A project that proves even coral reefs need a doctor sometimes. 🌊🤖
 
 ---
 
